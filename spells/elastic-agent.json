@@ -1,0 +1,19 @@
+{
+  "$schema": "https://spellcaster.sh/schema.json",
+  "name": "elastic-agent",
+  "description": "Install and configure the Elastic Agent on linux",
+  "identity": "stephen@distinguished.tech",
+  "license": "accept",
+  "trigraphs": [
+    {
+      "#": "elastic-agent-8.12.0-linux-x86_64.tar.gz should be downloaded",
+      "?": "test -s elastic-agent-8.12.0-linux-x86_64.tar.gz",
+      "!": "curl -OJL https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.12.0-linux-x86_64.tar.gz"
+    },
+    {
+      "#": "elastic-agent should be installed",
+      "?": "sudo elastic-agent version",
+      "!": "curl https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.12.0-linux-x86_64.tar.gz.sha512 | sha512sum --check && tar -xzf elastic-agent-8.12.0-linux-x86_64.tar.gz && sudo elastic-agent-8.12.0-linux-x86_64/elastic-agent install -n >&3"
+    }
+  ]
+}
